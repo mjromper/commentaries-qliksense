@@ -1,6 +1,6 @@
 define( [
 	"angular",
-	"qlik", 
+	"qlik",
 	"text!./template.html",
 	"./properties",
 	"./db",
@@ -23,7 +23,7 @@ function ( angular, qlik, template, props, DB, moment, md5 ) {
             showTitles: false
         },
 		paint: function ( $element, layout ) {
-			
+
 			this.$scope.updateHeight();
 
 			DB.init({
@@ -45,21 +45,21 @@ function ( angular, qlik, template, props, DB, moment, md5 ) {
 			});
 
 			var newAnchor = md5(selectionValues.toString());
-			if ( !this.$scope.lastAnchor 
-				|| !angular.equals(this.$scope.lastAnchor, newAnchor) 
+			if ( !this.$scope.lastAnchor
+				|| !angular.equals(this.$scope.lastAnchor, newAnchor)
 					|| this.$scope.apiUrl !== layout.props.server.apiUrl ) {
-				this.$scope.lastAnchor = newAnchor;	
+				this.$scope.lastAnchor = newAnchor;
 				this.$scope.getComments();
 			} else {
-				this.$scope.lastAnchor = newAnchor;	
+				this.$scope.lastAnchor = newAnchor;
 			}
 
 			this.$scope.apiUrl = layout.props.server.apiUrl;
-				
+
 			return qlik.Promise.resolve();
-	
+
 		},
-		controller: ['$scope', '$element', '$timeout',function ( $scope, $element, $timeout ) {			
+		controller: ['$scope', '$element', '$timeout',function ( $scope, $element, $timeout ) {
 
 			var currentUser;
 
@@ -76,17 +76,15 @@ function ( angular, qlik, template, props, DB, moment, md5 ) {
 			var currentSheetId = qlik.navigation.getCurrentSheetId().sheetId,
 				currentAppId = qlik.currApp(this).id;
 
-			console.log(currentAppId, currentSheetId, currentUser);
-
 			$scope.updateHeight = function() {
-				$scope.commentsHeight = $element[0].clientHeight - 70;	
+				$scope.commentsHeight = $element[0].clientHeight - 70;
 			};
 
 			function _getComments(){
 				if ( !$scope.lastAnchor ) {
 					return;
 				}
-				
+
 				DB.getCommentsBySheet( currentSheetId, $scope.lastAnchor ).then(function(res){
 					$timeout(function(){
 						$scope.comments = res.data.map(function(c){
@@ -105,7 +103,7 @@ function ( angular, qlik, template, props, DB, moment, md5 ) {
 			});
 
 			$scope.getComments = _getComments;
-			
+
 
 			$scope.updateCreateComment = function() {
 				if ( $scope.comment.text.trim() !== "" ) {
@@ -138,7 +136,7 @@ function ( angular, qlik, template, props, DB, moment, md5 ) {
 							$scope.error = err;
 							console.log("err", err);
 						});
-					}				
+					}
 				}
 			};
 
@@ -159,9 +157,9 @@ function ( angular, qlik, template, props, DB, moment, md5 ) {
 			}
 
 			_getComments();
-			$scope.updateHeight();	
+			$scope.updateHeight();
 		}]
-			
+
 	};
 
 } );

@@ -1,5 +1,5 @@
 {
-	"name": "comments-writeback",
+	"name": "commentaries-writeback",
 	"description": "Commentries on sheets writeback extension attached to dimension",
 	"type": "visualization",
 	"version": "1.0.0",
