@@ -2,7 +2,7 @@
 	"name": "commentaries-writeback",
 	"description": "Commentries on sheets writeback extension attached to dimension",
 	"type": "visualization",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"author": "manuel.romero@qik.com",
 	"homepage": "",
 	"keywords": "qlik-sense, visualization",

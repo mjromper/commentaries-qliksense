@@ -18,6 +18,9 @@ define(["angular"], function(angular) {
 		return $http({
 		  method: 'POST',
 		  url: options.apiURL+"/comments",
+		  headers: {
+   			"Content-Type": "application/json"
+ 		  },
 		  data: data
 		});
   	}
@@ -26,14 +29,20 @@ define(["angular"], function(angular) {
   		return $http({
 		  method: 'POST',
 		  url: options.apiURL+"/comments/"+id,
+		  headers: {
+   			"Content-Type": "application/json"
+ 		  },
 		  data: data
 		});
   	}
 
   	function getCommentsBySheet( sheetId, anchor ) {
   		return $http({
-		  method: 'GET',
+		  method: "GET",
 		  url: options.apiURL+"/comments",
+		  headers: {
+   			"Content-Type": "application/json"
+ 		  },
 		  params: {
 		  	sheetId: sheetId,
 		  	anchor: anchor
@@ -44,6 +53,9 @@ define(["angular"], function(angular) {
   	function deleteComment( id ) {
   		return $http({
 		  method: 'DELETE',
+		  headers: {
+   			"Content-Type": "application/json"
+ 		  },
 		  url: options.apiURL+"/comments/"+id
 		});
   	}
