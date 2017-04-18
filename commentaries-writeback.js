@@ -6,7 +6,7 @@ define( [
 	"./db",
 	"./libs/moment",
 	"./libs/md5.min",
-	"css!./comments-writeback.css",
+	"css!./commentaries-writeback.css",
 ],
 function ( angular, qlik, template, props, DB, moment, md5 ) {
 
