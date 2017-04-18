@@ -17,7 +17,7 @@ define(["angular"], function(angular) {
   		// Simple GET request example:
 		return $http({
 		  method: 'POST',
-		  url: options.apiURL+"/comments",
+		  url: options.apiURL,
 		  headers: {
    			"Content-Type": "application/json"
  		  },
@@ -28,7 +28,7 @@ define(["angular"], function(angular) {
   	function updateCreateComment( id, data ) {
   		return $http({
 		  method: 'POST',
-		  url: options.apiURL+"/comments/"+id,
+		  url: options.apiURL+"/"+id,
 		  headers: {
    			"Content-Type": "application/json"
  		  },
@@ -39,7 +39,7 @@ define(["angular"], function(angular) {
   	function getCommentsBySheet( sheetId, anchor ) {
   		return $http({
 		  method: "GET",
-		  url: options.apiURL+"/comments",
+		  url: options.apiURL,
 		  headers: {
    			"Content-Type": "application/json"
  		  },
@@ -56,7 +56,7 @@ define(["angular"], function(angular) {
 		  headers: {
    			"Content-Type": "application/json"
  		  },
-		  url: options.apiURL+"/comments/"+id
+		  url: options.apiURL+"/"+id
 		});
   	}
 
@@ -66,6 +66,5 @@ define(["angular"], function(angular) {
 		createNew: createNew,
 		getCommentsBySheet: getCommentsBySheet,
 		deleteComment: deleteComment
-
 	}
 });

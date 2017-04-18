@@ -1,6 +1,21 @@
-define([], function() {
+define(["qlik"], function( qlik ) {
+    
     "use strict";
 
+    var sheetPropsHeader = {
+            type: "items",
+            label: "Sheet",
+            items: {
+                apiUrl: {
+                    type: "string",
+                    ref: "props.sheet.id",
+                    label: "Sheet Id",
+                    defaultValue: function() {
+                        return qlik.navigation.getCurrentSheetId().sheetId
+                    }
+                }
+            }
+        };
     var serverPropsHeader = {
             type: "items",
             label: "Server",
@@ -9,7 +24,7 @@ define([], function() {
                     type: "string",
                     ref: "props.server.apiUrl",
                     label: "API URL",
-                    defaultValue: "http://localhost:8200/api"
+                    defaultValue: "https://localhost:8200/api/comments"
                 }
             }
         },
@@ -17,7 +32,8 @@ define([], function() {
             type: "items",
             component: "expandable-items",
             label: "Settings", items: {  
-                server: serverPropsHeader
+                server: serverPropsHeader,
+                sheet: sheetPropsHeader
             }
         };
 

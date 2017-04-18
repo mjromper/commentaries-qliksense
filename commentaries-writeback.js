@@ -45,16 +45,19 @@ function ( angular, qlik, template, props, DB, moment, md5 ) {
 			});
 
 			var newAnchor = md5(selectionValues.toString());
-			if ( !this.$scope.lastAnchor
-				|| !angular.equals(this.$scope.lastAnchor, newAnchor)
-					|| this.$scope.apiUrl !== layout.props.server.apiUrl ) {
-				this.$scope.lastAnchor = newAnchor;
-				this.$scope.getComments();
-			} else {
-				this.$scope.lastAnchor = newAnchor;
-			}
 
+			var updateComments = !this.$scope.lastAnchor
+				|| !angular.equals(this.$scope.lastAnchor, newAnchor)
+					|| this.$scope.apiUrl !== layout.props.server.apiUrl 
+						|| this.$scope.sheetId !== layout.props.sheet.id;
+
+			this.$scope.lastAnchor = newAnchor;
+			this.$scope.sheetId = layout.props.sheet.id;
 			this.$scope.apiUrl = layout.props.server.apiUrl;
+
+			if ( updateComments ) {
+				this.$scope.getComments();
+			}
 
 			return qlik.Promise.resolve();
 
@@ -68,6 +71,7 @@ function ( angular, qlik, template, props, DB, moment, md5 ) {
 			$scope.comment = {};
 			$scope.lastAnchor = null;
 			$scope.apiUrl = null;
+			$scope.sheetId = null;
 
 			qlik.getGlobal().getAuthenticatedUser( function(res){
 				currentUser = res.qReturn;
@@ -76,19 +80,18 @@ function ( angular, qlik, template, props, DB, moment, md5 ) {
 				}
 			} );
 
-			var currentSheetId = qlik.navigation.getCurrentSheetId().sheetId,
-				currentAppId = qlik.currApp(this).id;
+			var currentAppId = qlik.currApp(this).id;
 
 			$scope.updateHeight = function() {
 				$scope.commentsHeight = $element[0].clientHeight - 70;
 			};
 
 			function _getComments(){
-				if ( !$scope.lastAnchor ) {
+				if ( !$scope.lastAnchor || !$scope.sheetId ) {
 					return;
 				}
 
-				DB.getCommentsBySheet( currentSheetId, $scope.lastAnchor ).then(function(res){
+				DB.getCommentsBySheet( $scope.sheetId, $scope.lastAnchor ).then(function(res){
 					$timeout(function(){
 						$scope.comments = res.data.map(function(c){
 							c.date = moment(c.created).format("DD/MM/YY, h:mma");
@@ -125,7 +128,7 @@ function ( angular, qlik, template, props, DB, moment, md5 ) {
 							created: new Date(),
 							text: $scope.comment.text,
 							user: currentUser,
-							sheetId: currentSheetId,
+							sheetId: $scope.sheetId,
 							anchor: $scope.lastAnchor,
 							appId: currentAppId
 						};
