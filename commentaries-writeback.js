@@ -71,6 +71,9 @@ function ( angular, qlik, template, props, DB, moment, md5 ) {
 
 			qlik.getGlobal().getAuthenticatedUser( function(res){
 				currentUser = res.qReturn;
+				if ( currentUser.indexOf("UserId") !== -1 ) {
+					currentUser = currentUser.split("=")[2];
+				}
 			} );
 
 			var currentSheetId = qlik.navigation.getCurrentSheetId().sheetId,
