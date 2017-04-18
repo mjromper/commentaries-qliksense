@@ -1,7 +1,7 @@
 {
-  "name": "comments-writeback",
+  "name": "commentaries-writeback",
   "description": "Commentries Qlik Sense extension. Comments per sheet and set of dimensions",
-  "main": "comments-writeback.js",
+  "main": "commentaries-writeback.js",
   "authors": [
     "Manuel Romero"
   ],
@@ -16,6 +16,6 @@
     "tests"
   ],
   "dependencies": {
-    
+
   }
 }

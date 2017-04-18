@@ -1,8 +1,8 @@
 {
-  "name": "comments-writeback",
+  "name": "commentaries-writeback",
   "version": "1.0.0",
   "description": "Commentries Qlik Sense extension. Writeback comments per sheet and set of dimensions",
-  "main": "comments-writeback.js",
+  "main": "commentaries-writeback.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
