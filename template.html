@@ -1,0 +1,42 @@
+<div qv-extension style="height: 100%; position: relative; overflow: hidden;" class="ng-scope">
+    <!--{{ html }}-->
+    <div class="main">
+        <div class="wrapper" style="height:{{commentsHeight}}px;">
+            <div class="comments-container">
+                <div ng-repeat="c in comments">
+                    <div class="comment-box well" ng-class="{'edit': edit && c._id === comment._id}">
+                        <div style="padding-bottom: 5px;">
+                            <b class="lui-text-success username">{{c.user}}</b> <small class="date">({{c.date}})</small>
+                        </div>
+                        <div class="lui-text-default">
+                            <pre>{{c.text}}</pre>
+                        </div>
+
+                        <div class="buttons-right">
+                            <button title="Edit" style="min-width:30px;" class="lui-fade-button" qva-activate="editComment(c)">
+                                <span class="lui-fade-button__icon lui-icon--small lui-icon lui-icon--edit"></span>
+                            </button>
+                            <button title="Remove" style="min-width:30px;" class="lui-fade-button" qva-activate="deleteComment(c)">
+                                <span class="lui-fade-button__icon lui-icon--small lui-icon lui-icon--bin"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center;" ng-if="error">
+                    <div><span class="lui-icon  lui-icon--warning" aria-hidden="true"></span></div>
+                    There was an error loading comments from server
+                </div>
+
+            </div>
+        </div>
+        <div class="send-container">
+            <textarea type="text" class="lui-textarea textarea" ng-model="comment.text" ng-trim="false"></textarea>
+            <!--<input type="submit" name="Button1" value="Send" id="Button1" style="height:61px;width:15%;">-->
+            <div style="text-align: center;">
+                <button class="send-button lui-button lui-button--success" qva-activate="updateCreateComment()" ng-class="{'lui-disabled': disabled}">{{edit? 'Update': 'Send'}}</button>
+                <br ng-if="edit">
+                <a class="lui-text-default" ng-if="edit" href qva-activate="cancelEdit()">cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
