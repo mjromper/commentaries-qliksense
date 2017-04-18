@@ -116,7 +116,6 @@ function ( angular, qlik, template, props, DB, moment, md5 ) {
 							_getComments();
 						}, function(err){
 							$scope.error = err;
-							console.log("err", err);
 						});
 					} else {
 						var comment = {
@@ -134,7 +133,6 @@ function ( angular, qlik, template, props, DB, moment, md5 ) {
 							_getComments();
 						}, function(err){
 							$scope.error = err;
-							console.log("err", err);
 						});
 					}
 				}
