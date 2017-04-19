@@ -1,5 +1,5 @@
 define(["qlik"], function( qlik ) {
-    
+
     "use strict";
 
     var sheetPropsHeader = {
@@ -27,21 +27,35 @@ define(["qlik"], function( qlik ) {
                     defaultValue: "https://localhost:8200/api/comments"
                 }
             }
-        },
-        commentsBoxSection = {
+        };
+
+    var colorPropsHeader = {
             type: "items",
-            component: "expandable-items",
-            label: "Settings", items: {  
-                server: serverPropsHeader,
-                sheet: sheetPropsHeader
+            label: "Main color",
+            items: {
+                apiUrl: {
+                    type: "string",
+                    ref: "props.color.hex",
+                    label: "Color",
+                    defaultValue: "#61a729"
+                }
             }
         };
 
+    var commentsBoxSection = {
+            type: "items",
+            component: "expandable-items",
+            label: "Settings", items: {
+                server: serverPropsHeader,
+                sheet: sheetPropsHeader,
+                color: colorPropsHeader
+            }
+        };
 
     return {
         type: "items",
         component: "accordion",
-        items: {        
+        items: {
             dimensions: {
                 uses: "dimensions",
                 min: 0,
@@ -50,10 +64,8 @@ define(["qlik"], function( qlik ) {
             commentsBoxSection: commentsBoxSection,
             appearance: {
                 uses: "settings",
+
             }
         }
     };
-
-
-
 });

@@ -6,7 +6,7 @@
                 <div ng-repeat="c in comments">
                     <div class="comment-box well" ng-class="{'edit': edit && c._id === comment._id}">
                         <div style="padding-bottom: 5px;">
-                            <b class="lui-text-success username">{{c.user}}</b> <small class="date">({{c.date}})</small>
+                            <b class="lui-text-success username" ng-style="{'color': props.color.hex }">{{c.user}}</b> <small class="date">({{c.date}})</small>
                         </div>
                         <div class="lui-text-default">
                             <pre>{{c.text}}</pre>
@@ -33,7 +33,7 @@
             <textarea type="text" class="lui-textarea textarea" ng-model="comment.text" ng-trim="false"></textarea>
             <!--<input type="submit" name="Button1" value="Send" id="Button1" style="height:61px;width:15%;">-->
             <div style="text-align: center;">
-                <button class="send-button lui-button lui-button--success" qva-activate="updateCreateComment()" ng-class="{'lui-disabled': disabled}">{{edit? 'Update': 'Send'}}</button>
+                <button class="send-button lui-button lui-button--success" qva-activate="updateCreateComment()" ng-class="{'lui-disabled': disabled}" ng-style="{'background': props.color.hex }">{{edit? 'Update': 'Send'}}</button>
                 <br ng-if="edit">
                 <a class="lui-text-default" ng-if="edit" href qva-activate="cancelEdit()">cancel</a>
             </div>

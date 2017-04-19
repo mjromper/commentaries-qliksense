@@ -48,12 +48,10 @@ function ( angular, qlik, template, props, DB, moment, md5 ) {
 
 			var updateComments = !this.$scope.lastAnchor
 				|| !angular.equals(this.$scope.lastAnchor, newAnchor)
-					|| this.$scope.apiUrl !== layout.props.server.apiUrl 
-						|| this.$scope.sheetId !== layout.props.sheet.id;
+					|| !angular.equals(this.$scope.props, layout.props );
 
 			this.$scope.lastAnchor = newAnchor;
-			this.$scope.sheetId = layout.props.sheet.id;
-			this.$scope.apiUrl = layout.props.server.apiUrl;
+			this.$scope.props = angular.copy(layout.props);
 
 			if ( updateComments ) {
 				this.$scope.getComments();
@@ -70,8 +68,7 @@ function ( angular, qlik, template, props, DB, moment, md5 ) {
 			$scope.edit = false;
 			$scope.comment = {};
 			$scope.lastAnchor = null;
-			$scope.apiUrl = null;
-			$scope.sheetId = null;
+			$scope.props = {};
 
 			qlik.getGlobal().getAuthenticatedUser( function(res){
 				currentUser = res.qReturn;
@@ -87,11 +84,11 @@ function ( angular, qlik, template, props, DB, moment, md5 ) {
 			};
 
 			function _getComments(){
-				if ( !$scope.lastAnchor || !$scope.sheetId ) {
+				if ( !$scope.lastAnchor || !$scope.props.sheet || !$scope.props.sheet.id ) {
 					return;
 				}
 
-				DB.getCommentsBySheet( $scope.sheetId, $scope.lastAnchor ).then(function(res){
+				DB.getCommentsBySheet( $scope.props.sheet.id, $scope.lastAnchor ).then(function(res){
 					$timeout(function(){
 						$scope.comments = res.data.map(function(c){
 							c.date = moment(c.created).format("DD/MM/YY, h:mma");
@@ -128,7 +125,7 @@ function ( angular, qlik, template, props, DB, moment, md5 ) {
 							created: new Date(),
 							text: $scope.comment.text,
 							user: currentUser,
-							sheetId: $scope.sheetId,
+							sheetId: $scope.props.sheet.id,
 							anchor: $scope.lastAnchor,
 							appId: currentAppId
 						};
