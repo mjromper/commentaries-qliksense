@@ -25,7 +25,7 @@ The set of dimensions to attached the commentaries to (actually the commentaries
 * Any user can update (edit) or delete any commentary of any user.
 
 
-## Installation of this module
+## Installation of this extension
 
 Download the ZIP file here https://github.com/mjromper/commentaries-qliksense/archive/master.zip
 
