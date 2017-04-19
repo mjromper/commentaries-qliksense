@@ -6,7 +6,7 @@ IMPORTANT:
 
 This extension needs a server side module that exposes an REST API in order to persist commentaries (https://github.com/mjromper/commentaries-qliksense-server). Please install this module along this this extension.
 
-
+![](https://github.com/mjromper/commentaries-qliksense/raw/master/img/image1.png)
 
 ### Extension configuration
 
