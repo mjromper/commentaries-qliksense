@@ -10,8 +10,8 @@
 	display: block;
 }
 .comment-box .buttons-right {
-	position: absolute; 
-	top:0px; 
+	position: absolute;
+	top:0px;
 	right: 0px;
 	display: none;
 }
@@ -26,7 +26,7 @@
 
 .send-container {
 	padding-top: 5px;
-	width: 100%; 
+	width: 100%;
 	height: 55px;
 	display: -webkit-box;
     display: -moz-box;
@@ -42,7 +42,7 @@
 }
 
 .send-button{
-	width: 100px; 
+	width: 100px;
 	align-self: center;
 }
 
@@ -59,4 +59,12 @@
 
 .well.edit {
 	background-color: #c5c5c5;
+}
+
+pre {
+	white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
 }
