@@ -14,7 +14,7 @@ This extension needs a server side module that exposes an REST API in order to p
 
 The set of dimensions to attached the commentaries to (actually the commentaries are linked to the selection values for those dimensions)
 * ***Settings***
-	* ***Server***: server API URL where the server side is running
+	* ***Server***: server API URL where the server side is running (usually set this value to ***https://SERVER:8200/api/comments***)
 	* ***Sheet***: the sheet Id the commentary box displays in.
 
 ### Specification
