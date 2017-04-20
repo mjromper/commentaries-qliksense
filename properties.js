@@ -38,7 +38,7 @@ define(["qlik"], function( qlik ) {
                 apiUrl: {
                     type: "string",
                     ref: "props.color.hex",
-                    label: "Color",
+                    label: "Color code",
                     defaultValue: "#61a729"
                 }
             }
