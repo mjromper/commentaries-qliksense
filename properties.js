@@ -24,7 +24,9 @@ define(["qlik"], function( qlik ) {
                     type: "string",
                     ref: "props.server.apiUrl",
                     label: "API URL",
-                    defaultValue: "https://localhost:8200/api/comments"
+                    defaultValue: function() {
+                        return "https://"+window.location.hostname+":8200/api/comments"
+                    }
                 }
             }
         };
