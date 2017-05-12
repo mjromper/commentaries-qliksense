@@ -1,7 +1,7 @@
 <div qv-extension style="height: 100%; position: relative; overflow: hidden;" class="ng-scope">
     <!--{{ html }}-->
     <div class="main">
-        <div class="wrapper" style="height:{{commentsHeight}}px;">
+        <div class="wrapper" ng-style="heightWrapper">
             <div class="comments-container">
                 <div ng-repeat="c in comments">
                     <div class="comment-box well" ng-class="{'edit': edit && c._id === comment._id}">

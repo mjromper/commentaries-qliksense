@@ -80,7 +80,7 @@ function ( angular, qlik, template, props, DB, moment, md5 ) {
 			var currentAppId = qlik.currApp(this).id;
 
 			$scope.updateHeight = function() {
-				$scope.commentsHeight = $element[0].clientHeight - 70;
+				$scope.heightWrapper = { "height": ($element[0].clientHeight - 70)+"px" };
 			};
 
 			function _getComments(){
