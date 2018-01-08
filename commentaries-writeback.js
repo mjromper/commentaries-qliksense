@@ -30,7 +30,8 @@ function ( angular, qlik, template, props, DB, moment, md5 ) {
 				apiURL: layout.props.server.apiUrl
 			});
 
-			var state = qlik.currApp(this).selectionState(),
+			//var state = qlik.currApp(this).selectionState(),
+			var state = qlik.currApp().selectionState(),
 				dimensions = layout.qHyperCube.qDimensionInfo.map(function(dim){
 					return dim.qGroupFieldDefs[0];
 				}),
